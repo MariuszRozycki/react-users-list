@@ -1,6 +1,7 @@
 import "./UserList.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import FilterButtons from "./components/FilterButtons";
 
 const UsersList = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,12 @@ const UsersList = () => {
   });
 
   const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [isListVisible, setListVisible] = useState(false);
+
+  useEffect(() => {
+    setFilteredUsers(users);
+  }, [users]);
 
   const handleInputChange = (e) => {
     const target = e.target;
@@ -20,8 +27,6 @@ const UsersList = () => {
     });
   };
 
-  const [isListVisible, setListVisible] = useState(false);
-
   const setUser = (e) => {
     e.preventDefault();
     setUsers(users.concat({ ...formData, id: Date.now() }));
@@ -31,11 +36,24 @@ const UsersList = () => {
   const style = { display: isListVisible ? "grid" : "none" };
 
   const removeUser = (id) => {
-    console.log(id);
     const filteredUsers = users.filter((user) => user.id !== id);
     setUsers(filteredUsers);
+
+    if (filteredUsers.length <= 0) {
+      setListVisible(false);
+    }
   };
 
+  const handleUserTypes = (action) => {
+    if (action === "all") {
+      setFilteredUsers(users);
+    } else {
+      const filtered = users.filter((user) => user.userType === action);
+      setFilteredUsers(filtered);
+    }
+  };
+
+  console.log(filteredUsers);
   return (
     <div className="usersList">
       <form onSubmit={setUser}>
@@ -67,7 +85,8 @@ const UsersList = () => {
       </form>
 
       <div className="list" style={style}>
-        {users.map((user) => {
+        <FilterButtons handleUserTypes={handleUserTypes} />
+        {filteredUsers.map((user) => {
           return (
             <div
               className="userItem"

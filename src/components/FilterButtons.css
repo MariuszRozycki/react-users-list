@@ -1,0 +1,33 @@
+.filterButtonsWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.filterButtonsWrapper button {
+  padding: 12px 15px;
+  background-color: rgb(171, 113, 43);
+  color: black;
+  border: 1px solid black;
+  border-radius: var(--radius-small);
+  transition: var(--transition-unix);
+  box-shadow: 0 0 5px black;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.filterButtonsWrapper button:hover {
+  background-color: rgb(33, 33, 21);
+  box-shadow: inset 0 0 30px black;
+  color: wheat;
+  border-color: brown;
+}
+
+@media (max-width: 477px) {
+  .filterButtonsWrapper {
+    grid-template-columns: 200px;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+}
