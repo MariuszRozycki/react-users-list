@@ -1,0 +1,92 @@
+.usersList {
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.usersList form {
+  border: 1px solid black;
+  padding: 30px;
+  margin: 10px 15px;
+  border-radius: var(--radius-small);
+  display: grid;
+  grid-template-columns: minmax(auto, 400px);
+}
+
+.usersList form input,
+.usersList form select {
+  width: 100%;
+  padding: 5px;
+  margin: 0 auto 5px;
+  border-radius: var(--radius-small);
+  border: 1px solid black;
+}
+
+.usersList form select {
+  justify-self: flex-start;
+  margin: 3px auto 5px 0;
+  text-align: left;
+}
+
+.usersList form label {
+  margin: 10px auto 5px 0;
+  font-weight: 500;
+}
+
+.usersList form button {
+  background-color: brown;
+  border: 1px solid black;
+  color: bisque;
+  padding: 6px 15px;
+  margin: 5px auto;
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  transition: var(--transition-unix);
+}
+
+.usersList form button:hover {
+  background-color: rgb(39, 18, 18);
+}
+
+.usersList .list {
+  display: none;
+  grid-template-columns: minmax(auto, 400px);
+  border: 1px solid black;
+  padding: 30px;
+  margin: 10px 15px;
+  border-radius: var(--radius-small);
+  flex-direction: column;
+}
+
+.usersList .list .userItem {
+  margin-top: 5px;
+  border: 1px solid black;
+  transition: var(--transition-unix);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  box-shadow: 0 0 15px black;
+}
+
+.usersList .list .userItem:hover {
+  background-color: brown;
+  color: wheat;
+  box-shadow: inset 0 0 10px black;
+}
+
+.paragraphLabel {
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+
+.paragraphUserData {
+  margin-top: 0;
+}
+
+@media (max-width: 300px) {
+  .usersList form,
+  .usersList .list {
+    padding: 10px;
+  }
+}
